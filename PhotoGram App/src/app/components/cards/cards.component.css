@@ -1,0 +1,13 @@
+.photoCard{
+    transition:all .4s;
+    
+}
+.photoCard:hover{
+    transform: scale(1.2);
+    z-index:  1;
+}
+.photoModal{
+    background-color: rgba(0,0,0,.0001) !important;
+    text-transform:uppercase;
+    border: 0;
+}
