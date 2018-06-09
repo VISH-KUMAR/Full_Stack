@@ -1,0 +1,59 @@
+
+<br>
+<br>
+<div class="row">
+  <div class="col-md-4"></div>
+  <div class="col-md-2 text-center">
+    <button class="btn btn-lg btn-primary m-4" (click)="startGame()">Play</button>
+  </div>
+  <div class="col-md-2 text-center">
+    <button class="btn btn-lg btn-primary m-4" (click)="resetGame()">Reset</button>
+  </div>
+  <div class="col-md-4"></div>
+</div>
+<div class="container shadow">
+  <div *ngIf="!game" class="container h3 p-5">
+  <h1 class="text-center" >COUNTRY-FLAG GAME</h1>
+  <p>Can you name the flags?</p>
+  <ul>
+    <li>Correct Answer 1 point will be added.</li>
+    <li>If more than three answer are correct in a row then bonus points will be rewarded.</li>
+    <li>More than 4 incorrect anwer and your game over</li>      
+  </ul>
+</div>
+<div *ngIf="!gameOver" class="container text-center p-5">
+  <h1  class=" display-4">You no Knothing!!! </h1>
+  <h2>Bhag Ja yaha se</h2>
+  <button class = "btn btn-light btn-lg animated infinite bounce mt-5" (click) = "playAgain()">Play Again</button>
+</div>
+  <div class="row" *ngIf="game" [ngClass]="{'animated broken':incorrect == 4  }">
+    <div class="col-md-6 bg-light">
+      <div class="container mt-5">
+
+        <div class="row">
+          <div class="col-md-8">
+            <div *ngFor="let box of countryArray; let i = index">
+              <button type="button" class="btn btn-primary btn-block my-2  animated zoomInDown" (click)="checkAnswer(i)">{{ box }} </button>
+            </div>
+          </div>
+          <div class="col-md-4 text-md-center">
+            <h3>Score: {{score}}</h3>
+            <h3>Incorrect: {{ incorrect }}</h3>
+          </div>
+        </div>
+        <div class="container text-center mt-3">
+          <p *ngIf="result" class="animated zoomIn display-4" [ngStyle] = "{'opacity': 0}">CORRECT!!!</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 bg-light">
+      <div class="mt-2 mr-3 shadow flag-icon flag-icon-{{ countryIsoCode | lowercase}}" style="height: 25em; width:100%">
+      </div>
+    </div>
+  </div>
+</div>
+<audio id="myAudio">
+  <source src="horse.ogg" type="audio/ogg">
+  <source src="horse.mp3" type="audio/mpeg">
+</audio>

@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="container">
+    <input type="text" [(ngModel)]="name" class="form-control d-inline" placeholder="Enter the task">
+    <div class="ht-tm-element ht-tm-element-inner d-inline-block">
+        <select class="custom-select" [(ngModel)]="proty">
+          <option  value="high">High</option>
+          <option value="medium">Medium</option>
+          <option value="low">Low</option>
+        </select>
+      </div>
+    <button *ngIf="mode" class="btn btn-md btn-primary " (click)=" name!='' && proty !='' && addToList()">Add to List</button>
+    <button *ngIf="!mode" class="btn btn-md btn-primary " (click)="name!='' && proty !='' && updateTask()">Update Task</button>
+    <label class="float-right">{{ count }}/{{ tasks.length }}</label>
+  </div>
+<ul class="list-group">
+  <li  (click)="toggleTask(i)" class="list-item justify-content-between mt-2 text-dark animated bounceInUp"  [ngClass]="{'done':task.status,'high':task.priority=='high','medium':task.priority =='medium','low':task.priority =='low'}"
+   *ngFor = "let task of tasks ; let i=index" >
+
+       {{ task.taskName }}
+       <a class="btn btn-danger float-right" (click)="deleteTask(i)">Delete</a>
+       <a class=" btn btn-light float-right " (click)="editTask(i)">Edit</a>
+       <span class="my-1 mx-3  text-white float-right ">{{task.date | date}} </span>
+       <span class="my-1 mx-3  text-white float-right ">Priority:{{ [task.priority] }}  </span>
+
+  </li>
+</ul>
+</div>
